@@ -4,7 +4,7 @@ module.exports = function (config) {
   var app = require('./app')(config);
   
       
-  app.start = app.listen;
+  app.start = app.run = app.listen;
   
   return app;
 };
