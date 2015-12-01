@@ -1,5 +1,8 @@
 var base2 = require('../')({
-  debug: true
+  debug: true,
+  pre: function (app) {
+    
+  }
 })
 
 

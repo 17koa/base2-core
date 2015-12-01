@@ -82,16 +82,16 @@ function __set(app, k, v, default_v){
   app.set('port', v ? v : default_v);
 }
 
-function __call(config,key){
+function __call (config, key, app) {
   if (config[key]) {
-    config[key]();
+    config[key](app);
   }
 }
 
-function hook_post(config){
-   __call(config,'post')
+function hook_post (config, app) {
+  __call(config,'post', app);
 }
 
-function hook_pre(config){
-   __call(config,'pre')
+function hook_pre (config, app) {
+  __call(config,'pre', app);
 }
