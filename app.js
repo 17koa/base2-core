@@ -12,6 +12,7 @@ module.exports = function (config) {
   
   var cfg = {
     debug:false,
+    "public": "public",
     pre: function (app) {
       console.log('pre');
     },
@@ -34,7 +35,7 @@ module.exports = function (config) {
   hook_pre(cfg, app);
 
   // settings
-  _settings(app);
+  _settings(cfg, app);
   
   // global middlewares
   _global_middlewares(app);
@@ -51,9 +52,11 @@ module.exports = function (config) {
 /**
  * basic settings
  */ 
-function _settings(app){
+function _settings(cfg, app){
   app.set('port', 8001);
-  
+  app.set('public', cfg.public);
+  app.set('www', app.get('root') + "/" + app.get('public')); 
+  console.log(app.get('www'))
 }
 
 /**

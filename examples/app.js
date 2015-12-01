@@ -1,7 +1,8 @@
 var base2 = require('../')({
   debug: true,
   pre: function (app) {
-    console.log(app);
+    app.set('root', __dirname);
+    // console.log(app);
   }
 })
 
