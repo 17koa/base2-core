@@ -1,6 +1,3 @@
-var app = require('./app');
-
-app.start = app.listen;
 
 // function () {
 //   var port = app.get('port');
@@ -28,4 +25,10 @@ app.start = app.listen;
 // };
 
 
-module.exports = app;
+module.exports = function (config) {
+  var app = require('./app')(config);
+  
+  app.start = app.listen;
+  
+  return app;
+};

@@ -37,5 +37,10 @@ app.set_path = function () {
   
 }
 
-module.exports = app;
+module.exports = function (config) {
+  var deepExtend = require('deep-extend');
+  deepExtend(app, config);
+  
+  return app;
+};
 
