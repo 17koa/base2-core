@@ -57,6 +57,11 @@ function _settings(cfg, app){
   app.set('public', cfg.public);
   app.set('www', app.get('root') + "/" + app.get('public')); 
   console.log(app.get('www'))
+  
+  if(cfg.routes){
+    app.set('routes', cfg.routes);
+    mount(app, app.get('root') + "/" + cfg.routes, true);
+  }
 }
 
 /**
