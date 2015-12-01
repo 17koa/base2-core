@@ -10,6 +10,17 @@ module.exports = function (config) {
     express: express
   });
   
+  var cfg = {
+    debug:false,
+    pre: function () {
+      console.log('pre');
+    },
+    post: function () {
+      console.log('post');
+    }
+  }
+  deepExtend(cfg, config);
+  
   if(app.debug){
     app.set('root', path.join(__dirname, '../..'));
   }else{
@@ -17,10 +28,10 @@ module.exports = function (config) {
     app.set('root', path.join(__dirname, '../..'));
   }
   
-  deepExtend(app, config);
+  deepExtend(app, cfg);
   
   // hook_pre
-  hook_pre(config);
+  hook_pre(cfg);
 
   // settings
   _settings(app);
@@ -32,7 +43,7 @@ module.exports = function (config) {
   _routes(app);
 
   // hook_post
-  hook_post(config);
+  hook_post(cfg);
   
   return app;
 };
