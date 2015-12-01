@@ -1,12 +1,3 @@
-var lib = require('./lib');
+var base2 = require('./')
 
-var app = require('express')();
-console.log(app);
-console.log(lib);
-
-for(var k in lib){
-  var v = lib[k];
-  console.log(v);
-  
-  console.log(v(app));
-}
+base2.start(3019);
