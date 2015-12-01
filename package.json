@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./bin/www",
+    "test": "./node_modules/.bin/supervisor ./examples/app.js",
     "p": "npm publish ."
   },
   "repository": {
