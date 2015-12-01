@@ -4,7 +4,8 @@
   "description": "base2",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/supervisor ./bin/www"
+    "start": "./node_modules/.bin/supervisor ./bin/www",
+    "p": "npm publish .",
   },
   "repository": {
     "type": "git",
