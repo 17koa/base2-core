@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./bin/www",
-    "p": "npm publish .",
+    "p": "npm publish ."
   },
   "repository": {
     "type": "git",
