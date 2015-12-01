@@ -1,7 +1,7 @@
 var base2 = require('../')({
   debug: true,
   pre: function (app) {
-    
+    console.log(app);
   }
 })
 

@@ -12,10 +12,10 @@ module.exports = function (config) {
   
   var cfg = {
     debug:false,
-    pre: function () {
+    pre: function (app) {
       console.log('pre');
     },
-    post: function () {
+    post: function (app) {
       console.log('post');
     }
   }
@@ -31,7 +31,7 @@ module.exports = function (config) {
   deepExtend(app, cfg);
   
   // hook_pre
-  hook_pre(cfg);
+  hook_pre(cfg, app);
 
   // settings
   _settings(app);
@@ -43,7 +43,7 @@ module.exports = function (config) {
   _routes(app);
 
   // hook_post
-  hook_post(cfg);
+  hook_post(cfg, app);
   
   return app;
 };
