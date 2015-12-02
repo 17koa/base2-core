@@ -5,11 +5,11 @@ var mount       = require('mount-routes');
 var app         = express();
 
 app.set_absolute_path = function (key, path) {
-  this.set(key, app.get('root') + "/" + path); 
+  this.set(key, app.cfg.root + "/" + path); 
 };
 
 app.set_key_with_setting_key = function (key, setting_key) {
-  var __path = path.join(app.get('root'), app.cfg[setting_key]);
+  var __path = path.join(app.cfg.root, app.cfg[setting_key]);
   
   if (app.debug) {
     console.log(key + " = " + __path); 
@@ -90,7 +90,7 @@ function _settings (app) {
   
   if (cfg.routes) {
     app.set('routes', cfg.routes);
-    mount(app, app.get('root') + "/" + cfg.routes, app.debug);
+    mount(app, app.cfg.root + "/" + cfg.routes, app.debug);
   }
 }
 

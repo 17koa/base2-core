@@ -1,8 +1,6 @@
 var app = require('../')({
   // debug: true,
-  pre: function (app) {
-    app.set('root', __dirname);
-  },
+  root:__dirname,
   "views": "views",
   "routes": "routes2",
   "public": "public",
