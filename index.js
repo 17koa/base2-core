@@ -1,9 +1,8 @@
 var path        = require('path');
 var express     = require('express');
 var router      = express.Router();
-var meld        = require('meld');
 
-function app(config) {
+function main(config) {
   var app = require('./app')(config);
   // start server
   app.start = app.run = app.listen;
@@ -13,14 +12,6 @@ function app(config) {
   return app;
 };
 
-function _aop(app){
-  // Call a function after myObject.doSomething returns
-  meld.after(app, 'doSomething', function(result) {
-      console.log('myObject.doSomething returned: ' + result);
-  });
-  
-}
+main.router = router;
 
-app.router = router;
-
-module.exports = app;
+module.exports = main;

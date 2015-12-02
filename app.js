@@ -1,3 +1,4 @@
+var meld          = require('meld');
 var express       = require('express');
 var path          = require('path');
 var mount_routes  = require('mount-routes');
@@ -69,8 +70,10 @@ module.exports = function (config) {
   }
   
   app.cfg = cfg;
-  var life = app.life = lifecycle(app);
-  console.log(lifecycle)
+  
+  // init lifecycle
+  var life = app.life = lifecycle(app);  
+  _aop(app);
   // deepExtend(app, cfg);
   
   // hook_pre
@@ -92,6 +95,20 @@ module.exports = function (config) {
 };
 
 
+function _aop(obj){
+  var obj = app.life;
+  
+  for(var method in obj){
+    _aop_all(obj,method,app.cfg['before_' + method], app.cfg['after_' + method])
+  }
+
+  return app;
+}
+
+function _aop_all(obj, method, b, a){
+  meld.before(obj, method, b);
+  meld.after(obj, method, a);
+}
 
 function __set(app, k, v, default_v){
   app.set('port', v ? v : default_v);

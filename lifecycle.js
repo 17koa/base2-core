@@ -6,7 +6,7 @@ module.exports = function (app) {
     /**
      * basic settings
      */ 
-     settings: function () {
+    settings: function () {
       var cfg = app.cfg;
       app.set('port', 8001);
   

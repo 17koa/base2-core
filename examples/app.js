@@ -1,9 +1,12 @@
 var app = require('../')({
-  debug: true,
+  // debug: true,
   root:__dirname,
   "views": "views",
   "routes": "routes2",
   "public": "public",
+  before_settings: function() {
+    console.log('before_settings');
+  }
 })
 
 // console.log(app);
