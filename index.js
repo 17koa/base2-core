@@ -1,6 +1,3 @@
-var path        = require('path');
-var express     = require('express');
-
 function main(config) {
   var app = require('./app')(config);
   // start server
@@ -11,8 +8,6 @@ function main(config) {
   return app;
 };
 
-main.router = function (){
-  return express.Router();
-};
+main.router = require('express').Router();
 
 module.exports = main;
