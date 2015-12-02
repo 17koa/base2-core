@@ -41,6 +41,8 @@ app.start(3019);
 - app.mount_routes
 - app.mount_plugins
 
+更多，见 https://github.com/i5ting/base2-examples
+
 ## Extract
 
 - config.pre
