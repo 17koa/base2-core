@@ -4,7 +4,8 @@ var app = require('../')({
   "views": "views",
   "routes": "routes2",
   "public": "public",
-  before_settings: function() {
+  before_settings: function(app) {
+    // console.log(app)
     console.log('before_settings');
   }
 })
