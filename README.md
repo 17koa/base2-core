@@ -11,12 +11,12 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 
 ## Install
 
-    [sudo]npm install -g base2
+    [sudo]npm install --save base2
 
 ## Usages
 
 ```
-var base2 = require('../')({
+var base2 = require('base2')({
   debug: true,
   pre: function (app) {
     app.set('root', __dirname);
