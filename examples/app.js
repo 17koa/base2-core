@@ -4,7 +4,9 @@ var app = require('../')({
     app.set('root', __dirname);
     // console.log(app);
   },
-  routes: "routes"
+  "views": "views",
+  "routes": "routes",
+  "public": "public",
 })
 
 

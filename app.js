@@ -23,9 +23,9 @@ module.exports = function (config) {
   
   var cfg = {
     debug:false,
-    "views": "views",
-    "routes": "routes",
-    "public": "public",
+    // "views": "views",
+    // "routes": "routes",
+    // "public": "public",
     pre: function (app) {
       console.log('pre hook');
     },
@@ -67,12 +67,15 @@ module.exports = function (config) {
  */ 
 function _settings(cfg, app){
   app.set('port', 8001);
-  app.set('public', cfg.public);
   
   // app.set('www', app.get('root') + "/" + app.get('public')); 
-  app.set_key_with_setting_key('www', 'public');
-  app.set_key_with_setting_key('views', 'views');
-  console.log(app.get('www'))
+  if (cfg.public) {
+    app.set_key_with_setting_key('www', 'public');
+  }
+  
+  if (cfg.views) {
+    app.set_key_with_setting_key('views', 'views');
+  }
   
   if (cfg.routes) {
     app.set('routes', cfg.routes);
