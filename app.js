@@ -8,11 +8,11 @@ app.set_absolute_path = function (key, path) {
   this.set(key, app.get('root') + "/" + path); 
 },
 app.set_key_with_setting_key = function (key, setting_key) {
-  var __path = path.join(app.get('root'), 'views');
+  // console.log(app.cfg)
+  var __path = path.join(app.get('root'), app.cfg[setting_key]);
   console.log(key + " = " + __path); 
   
   this.set(key, __path); 
-  // app.set('views', path.join(__dirname, 'views'));
 }
 
 module.exports = function (config) {
@@ -22,7 +22,7 @@ module.exports = function (config) {
   });
   
   var cfg = {
-    debug:false,
+    debug: false,
     // "views": "views",
     // "routes": "routes",
     // "public": "public",
@@ -42,13 +42,14 @@ module.exports = function (config) {
     app.set('root', path.join(__dirname, '../..'));
   }
   
+  app.cfg = cfg;
   deepExtend(app, cfg);
   
   // hook_pre
-  hook_pre(cfg, app);
+  hook_pre(app);
 
   // settings
-  _settings(cfg, app);
+  _settings(app);
   
   // global middlewares
   _global_middlewares(app);
@@ -57,7 +58,7 @@ module.exports = function (config) {
   _routes(app);
 
   // hook_post
-  hook_post(cfg, app);
+  hook_post(app);
   
   return app;
 };
@@ -65,12 +66,13 @@ module.exports = function (config) {
 /**
  * basic settings
  */ 
-function _settings(cfg, app){
+function _settings (app) {
+  var cfg = app.cfg;
   app.set('port', 8001);
   
   // app.set('www', app.get('root') + "/" + app.get('public')); 
   if (cfg.public) {
-    app.set_key_with_setting_key('www', 'public');
+    app.set_key_with_setting_key('public', 'public');
   }
   
   if (cfg.views) {
@@ -87,7 +89,6 @@ function _settings(cfg, app){
  * global middlewares
  */ 
 function _global_middlewares(app){
-  app.use('/public', express.static(path.join(__dirname, '../public')));
   app.use(bodyparser.urlencoded({ extended: false }));
   
   require('./lib')(app);
@@ -115,10 +116,10 @@ function __call (config, key, app) {
   }
 }
 
-function hook_post (config, app) {
-  __call(config,'post', app);
+function hook_post (app) {
+  __call(app.cfg, 'post', app);
 }
 
-function hook_pre (config, app) {
-  __call(config,'pre', app);
+function hook_pre (app) {
+  __call(app.cfg, 'pre', app);
 }
