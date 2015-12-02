@@ -1,8 +1,9 @@
-var express     = require('express');
-var bodyparser  = require('body-parser');
-var path        = require('path');
-var mount       = require('mount-routes');
-var app         = express();
+var express       = require('express');
+var bodyparser    = require('body-parser');
+var path          = require('path');
+var mount_routes  = require('mount-routes');
+var mount_plugins = require('mount_plugin');
+var app           = express();
 
 app.set_absolute_path = function (key, path) {
   this.set(key, app.cfg.root + "/" + path); 
@@ -23,34 +24,14 @@ app.set_key_with_setting_key = function (key, setting_key) {
  * mount routes
  */ 
 app.mount_routes = function (path) {
-  // with path & api dump
-  // console.log(app);
-  // console.log(this);
-  mount(this, path, true);
+  mount_routes(this, path, this.debug);
 }
 
 /**
  * mount plugins
  */ 
 app.mount_plugins = function (plugin_dir) {
-  var requireDirectory = require('require-directory');
-  var lib = requireDirectory(module, plugin_dir);
-  
-  for(var k in lib){
-    var v = lib[k];
-  
-    if(v){
-      var middleware = v(app);
-    
-      if(middleware){
-        this.use(middleware);
-      }else{
-        if (app.debug) {
-          console.log('empty middleware');
-        }
-      }
-    }
-  }
+  mount_plugins(this, plugin_dir, this.debug);
 }
 
 module.exports = function (config) {
@@ -125,7 +106,7 @@ function _settings (app) {
   
   if (cfg.routes) {
     app.set('routes', cfg.routes);
-    mount(app, app.cfg.root + "/" + cfg.routes, app.debug);
+    app.mount_routes(app.cfg.root + "/" + cfg.routes, app.debug);
   }
 }
 
@@ -135,7 +116,7 @@ function _settings (app) {
 function _global_middlewares(app){
   app.use(bodyparser.urlencoded({ extended: false }));
   
-  app.mount_plugins('./lib');
+  app.mount_plugins(path.join(__dirname, 'lib'));
 }
 
 /**
