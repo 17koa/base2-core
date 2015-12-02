@@ -1,9 +1,10 @@
 var express       = require('express');
-var bodyparser    = require('body-parser');
 var path          = require('path');
 var mount_routes  = require('mount-routes');
 var mount_plugins = require('mount_plugin');
 var app           = express();
+
+var lifecycle     = require('./lifecycle');
 
 app.set_absolute_path = function (key, path) {
   this.set(key, app.cfg.root + "/" + path); 
@@ -68,19 +69,21 @@ module.exports = function (config) {
   }
   
   app.cfg = cfg;
+  var life = app.life = lifecycle(app);
+  console.log(lifecycle)
   // deepExtend(app, cfg);
   
   // hook_pre
   hook_pre(app);
 
   // settings
-  _settings(app);
-  
+  life.settings();
+  //
   // global middlewares
-  _global_middlewares(app);
-  
+  life.global_middlewares();
+  //
   // routes
-  _routes(app);
+  life.routes();
 
   // hook_post
   hook_post(app);
@@ -88,43 +91,7 @@ module.exports = function (config) {
   return app;
 };
 
-/**
- * basic settings
- */ 
-function _settings (app) {
-  var cfg = app.cfg;
-  app.set('port', 8001);
-  
-  // app.set('www', app.get('root') + "/" + app.get('public')); 
-  if (cfg.public) {
-    app.set_key_with_setting_key('public', 'public');
-  }
-  
-  if (cfg.views) {
-    app.set_key_with_setting_key('views', 'views');
-  }
-  
-  if (cfg.routes) {
-    app.set('routes', cfg.routes);
-    app.mount_routes(app.cfg.root + "/" + cfg.routes, app.debug);
-  }
-}
 
-/**
- * global middlewares
- */ 
-function _global_middlewares(app){
-  app.use(bodyparser.urlencoded({ extended: false }));
-  
-  app.mount_plugins(path.join(__dirname, 'lib'));
-}
-
-/**
- * routes
- */ 
-function _routes(app){
-  
-}
 
 function __set(app, k, v, default_v){
   app.set('port', v ? v : default_v);
