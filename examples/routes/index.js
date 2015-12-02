@@ -1,4 +1,5 @@
-var router = require('../..').router
+var express     = require('express');
+var router      = express.Router();
 
 // console.dir(router)
 /* GET home page. */

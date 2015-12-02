@@ -1,12 +1,13 @@
 {
   "name": "base2",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "base2",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./examples/app.js",
     "test": "./node_modules/.bin/supervisor ./examples/app.js",
-    "p": "npm publish ."
+    "p": "npm publish .",
+    "preinstall":"npm install --save base2"
   },
   "repository": {
     "type": "git",
