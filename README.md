@@ -8,6 +8,11 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/i5ting/base2/master/LICENSE.md)
 [![npm](https://img.shields.io/npm/dt/base2.svg)](https://www.npmjs.com/package/base2)
 
+## Features
+
+- 基于expressjs，可使用中间件，路由
+- 参数配置，可高度定制
+- 自动挂载路由
 
 ## Install
 
@@ -16,15 +21,13 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 ## Usages
 
 ```
-var app = require('base2')({
-  debug: true,
-  pre: function (app) {
-    app.set('root', __dirname);
-    // console.log(app);
-  },
-  routes: "routes"
+var app = require('../')({
+  // debug: true,
+  root:__dirname,
+  "views": "views",
+  "routes": "routes2",
+  "public": "public",
 })
-
 
 // console.log(base2);
 // base2.mount_routes(__dirname + '/routes2');
