@@ -1,5 +1,5 @@
 var app = require('../')({
-  debug: true,
+  // debug: true,
   pre: function (app) {
     app.set('root', __dirname);
   },

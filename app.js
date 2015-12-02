@@ -6,14 +6,17 @@ var app         = express();
 
 app.set_absolute_path = function (key, path) {
   this.set(key, app.get('root') + "/" + path); 
-},
+};
+
 app.set_key_with_setting_key = function (key, setting_key) {
-  // console.log(app.cfg)
   var __path = path.join(app.get('root'), app.cfg[setting_key]);
-  console.log(key + " = " + __path); 
+  
+  if (app.debug) {
+    console.log(key + " = " + __path); 
+  }
   
   this.set(key, __path); 
-}
+};
 
 module.exports = function (config) {
   var deepExtend = require('deep-extend');
@@ -27,13 +30,19 @@ module.exports = function (config) {
     // "routes": "routes",
     // "public": "public",
     pre: function (app) {
-      console.log('pre hook');
+      if (app.debug) {
+        console.log('pre hook');
+      }
     },
     post: function (app) {
-      console.log('post hook');
+      if (app.debug) {
+        console.log('post hook');
+      }
     }
   }
   deepExtend(cfg, config);
+  
+  app.debug = cfg.debug;
   
   if(app.debug){
     app.set('root', path.join(__dirname, '../..'));
@@ -43,7 +52,7 @@ module.exports = function (config) {
   }
   
   app.cfg = cfg;
-  deepExtend(app, cfg);
+  // deepExtend(app, cfg);
   
   // hook_pre
   hook_pre(app);
@@ -81,7 +90,7 @@ function _settings (app) {
   
   if (cfg.routes) {
     app.set('routes', cfg.routes);
-    mount(app, app.get('root') + "/" + cfg.routes, true);
+    mount(app, app.get('root') + "/" + cfg.routes, app.debug);
   }
 }
 
