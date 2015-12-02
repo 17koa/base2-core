@@ -43,9 +43,17 @@ app.start(3019);
 
 ## Extract
 
+- config.pre
 - settings
-- global middlewares
+  - config.before_settings
+  - config.after_settings
+- global_middlewares
+  - config.before_global_middlewares
+  - config.after_global_middlewares
 - routes
+  - config.before_routes
+  - config.after_routes
+- config.post
 
 ## middleware
 
