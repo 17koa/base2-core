@@ -4,26 +4,33 @@ var path        = require('path');
 var mount       = require('mount-routes');
 var app         = express();
 
+app.set_absolute_path = function (key, path) {
+  this.set(key, app.get('root') + "/" + path); 
+},
+app.set_key_with_setting_key = function (key, setting_key) {
+  var __path = path.join(app.get('root'), 'views');
+  console.log(key + " = " + __path); 
+  
+  this.set(key, __path); 
+  // app.set('views', path.join(__dirname, 'views'));
+}
+
 module.exports = function (config) {
   var deepExtend = require('deep-extend');
   deepExtend(app, {
-    express: express,
-    set_absolute_path: function (key, path) {
-      this.set(key, app.get('root') + "/" + path); 
-    },
-    set_key_with_setting_key: function (key, setting_key) {
-      this.set(key, app.get('root') + "/" + app.get(setting_key)); 
-    }
+    express: express
   });
   
   var cfg = {
     debug:false,
+    "views": "views",
+    "routes": "routes",
     "public": "public",
     pre: function (app) {
-      console.log('pre');
+      console.log('pre hook');
     },
     post: function (app) {
-      console.log('post');
+      console.log('post hook');
     }
   }
   deepExtend(cfg, config);
@@ -61,6 +68,7 @@ module.exports = function (config) {
 function _settings(cfg, app){
   app.set('port', 8001);
   app.set('public', cfg.public);
+  
   // app.set('www', app.get('root') + "/" + app.get('public')); 
   app.set_key_with_setting_key('www', 'public');
   app.set_key_with_setting_key('views', 'views');

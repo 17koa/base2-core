@@ -4,7 +4,7 @@ var base2 = require('../')({
     app.set('root', __dirname);
     // console.log(app);
   },
-  routes: "routes2"
+  routes: "routes"
 })
 
 
