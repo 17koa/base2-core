@@ -18,6 +18,41 @@ app.set_key_with_setting_key = function (key, setting_key) {
   this.set(key, __path); 
 };
 
+
+/**
+ * mount routes
+ */ 
+app.mount_routes = function (path) {
+  // with path & api dump
+  // console.log(app);
+  // console.log(this);
+  mount(this, path, true);
+}
+
+/**
+ * mount plugins
+ */ 
+app.mount_plugins = function (plugin_dir) {
+  var requireDirectory = require('require-directory');
+  var lib = requireDirectory(module, plugin_dir);
+  
+  for(var k in lib){
+    var v = lib[k];
+  
+    if(v){
+      var middleware = v(app);
+    
+      if(middleware){
+        this.use(middleware);
+      }else{
+        if (app.debug) {
+          console.log('empty middleware');
+        }
+      }
+    }
+  }
+}
+
 module.exports = function (config) {
   var deepExtend = require('deep-extend');
   deepExtend(app, {
@@ -100,19 +135,14 @@ function _settings (app) {
 function _global_middlewares(app){
   app.use(bodyparser.urlencoded({ extended: false }));
   
-  require('./lib')(app);
+  app.mount_plugins('./lib');
 }
 
 /**
  * routes
  */ 
 function _routes(app){
-  app.mount_routes = function (path) {
-    // with path & api dump
-    // console.log(app);
-    // console.log(this);
-    mount(this, path, true);
-  }
+  
 }
 
 function __set(app, k, v, default_v){

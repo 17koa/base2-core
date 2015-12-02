@@ -10,7 +10,8 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 
 ## Features
 
-- 基于expressjs，可使用中间件，路由
+- 基于expressjs，可使用connect中间件，路由
+- 抽象app生命周期和中间件（不是connect的中间件）
 - 参数配置，可高度定制
 - 自动挂载路由
 
@@ -41,6 +42,27 @@ app.start(3019);
 - global middlewares
 - routes
 
+## middleware
+
+```
+module.exports = function (app) {
+  if (app.debug) {
+    console.log(app.get('views'));
+  }
+  
+  if (app.get('views')) {
+    app.set('views', app.get('views'));
+    app.set('view engine', 'jade');
+  }
+};
+```
+
+in app.js
+
+
+```
+app.mount_plugin('xxxx_plugins_dir');
+```
 
 ## Contributing
 

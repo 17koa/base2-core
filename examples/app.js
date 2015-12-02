@@ -6,7 +6,8 @@ var app = require('../')({
   "public": "public",
 })
 
-// console.log(base2);
-// base2.mount_routes(__dirname + '/routes2');
+// console.log(app);
+// app.mount_routes(__dirname + '/routes2');
+app.mount_plugins(__dirname + '/plugins');
 
 app.start(3019);
