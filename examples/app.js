@@ -1,4 +1,4 @@
-var base2 = require('../')({
+var app = require('../')({
   debug: true,
   pre: function (app) {
     app.set('root', __dirname);
@@ -11,4 +11,4 @@ var base2 = require('../')({
 // console.log(base2);
 // base2.mount_routes(__dirname + '/routes2');
 
-base2.start(3019);
+app.start(3019);
