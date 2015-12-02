@@ -36,6 +36,8 @@ var app = require('../')({
 app.start(3019);
 ```
 
+说明
+
 - app.mount_routes
 - app.mount_plugins
 
