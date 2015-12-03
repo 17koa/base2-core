@@ -22,7 +22,7 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 ## Usages
 
 ```
-var app = require('../')({
+var app = require('base2')({
   // debug: true,
   root:__dirname,
   "views": "views",
