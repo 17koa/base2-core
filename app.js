@@ -43,7 +43,11 @@ module.exports = function (config) {
   
   var cfg = {
     debug: false,
-    log_enable: false,
+    favicon: 'favicon.ico',
+    favicon_enable: false,
+    post_enable: true,
+    cookie_enable: true,
+    log_enable: true,
     log_level: "dev",
     // "views": "views",
     // "routes": "routes",

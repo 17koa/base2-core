@@ -4,6 +4,8 @@ var app = require('../')({
   "views": "views",
   "routes": "routes",
   "public": "public",
+  favicon: 'images/favicon.ico',
+  favicon_enable: true,
   before_settings: function(app) {
     // console.log(app)
     console.log('before_settings');
