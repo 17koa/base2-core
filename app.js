@@ -47,6 +47,7 @@ module.exports = function (config) {
   
   var cfg = {
     debug: false,
+    type: "express",
     favicon: 'favicon.ico',
     favicon_enable: false,
     post_enable: true,

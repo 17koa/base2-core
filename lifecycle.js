@@ -36,8 +36,10 @@ module.exports = function (app) {
      */ 
     global_middlewares: function () {
       this._before('global_middlewares');
-  
-      app.mount_plugins(path.join(__dirname, 'lib'));
+      
+      // default = base2-express-middlewares
+      app.mount_plugins(__dirname + '/node_modules/base2-' + app.cfg.type + '-middlewares/lib');
+      
       this._after('global_middlewares');
     },
 
