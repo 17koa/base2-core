@@ -36,6 +36,10 @@ app.mount_plugins = function (plugin_dir) {
 }
 
 module.exports = function (config) {
+  // root = base2-examples/
+  // base2-examples/node_modules/base2
+  app.set('root', _get_default_root_path());
+  
   var deepExtend = require('deep-extend');
   deepExtend(app, {
     express: express
@@ -67,14 +71,8 @@ module.exports = function (config) {
   
   app.debug = cfg.debug;
   
-  if(app.debug){
-    app.set('root', path.join(__dirname, '../..'));
-  }else{
-    // xx/node_modules/base2/.
-    app.set('root', path.join(__dirname, '../..'));
-  }
-  
   app.cfg = cfg;
+  
   
   // init lifecycle
   var life = app.life = lifecycle(app);  
@@ -114,4 +112,11 @@ function hook_post (app) {
 
 function hook_pre (app) {
   __call(app.cfg, 'pre', app);
+}
+
+function _get_default_root_path () {
+  var arr = __dirname.split('/');
+  arr.pop();
+  arr.pop();
+  return arr.join('/');
 }

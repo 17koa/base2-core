@@ -76,6 +76,14 @@ more detail see https://github.com/i5ting/base2-examples
   }
 ```
 
+默认的root是相对于安装的node_modules路径的上级
+
+比如当前路径是`base2-examples/node_modules/base2`
+
+```
+root = base2-examples/
+```
+
 ## Extract
 
 - config.pre

@@ -12,7 +12,13 @@ module.exports = function (app) {
       this._before('settings');
       
       app.set('port', 8001);
-  
+      
+      if(cfg.root){
+        app.set('root', cfg.root);
+      }else{
+        app.cfg.root = app.get('root');
+      }
+      
       // app.set('www', app.get('root') + "/" + app.get('public')); 
       if (cfg.public) {
         app.set_key_with_setting_key('public', 'public');
