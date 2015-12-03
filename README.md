@@ -4,7 +4,7 @@
 
 <h1><a id="user-content-trek" class="anchor" href="#trek" aria-hidden="true"><span class="octicon octicon-link"></span></a>base2</h1>
 
-<p>Next generation full-stack JavaScript open source solution, based on <a href="http://koajs.com/">Express</a>.Artwork by [i5ting](http://www.github.com/i5ting/).</p>
+<p>Next generation full-stack JavaScript open source solution, based on <a href="http://expressjs.com/">Express</a>.Artwork by <a href="http://www.github.com/i5ting/">i5ting</a>.</p>
 
 </div>
 
