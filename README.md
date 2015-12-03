@@ -1,5 +1,13 @@
 # base2
+<div align="center">
 
+<p><a href="https://camo.githubusercontent.com/16aa0232aa5d0e57a0632d37d11a1ba7c814f364/687474703a2f2f7472656b6a732e636f6d2f696d616765732f7472656b2d6c6f676f2e737667" target="_blank"><img src="https://camo.githubusercontent.com/16aa0232aa5d0e57a0632d37d11a1ba7c814f364/687474703a2f2f7472656b6a732e636f6d2f696d616765732f7472656b2d6c6f676f2e737667" alt="Trek" data-canonical-src="http://trekjs.com/images/trek-logo.svg" style="max-width:100%;height:12rem;"></a></p>
+
+<h1><a id="user-content-trek" class="anchor" href="#trek" aria-hidden="true"><span class="octicon octicon-link"></span></a>base2</h1>
+
+<p>Next generation full-stack JavaScript open source solution, based on <a href="http://koajs.com/">Express</a>.</p>
+
+</div>
 
 Artwork by [i5ting](http://www.github.com/i5ting/).
 
@@ -36,12 +44,12 @@ var app = require('base2')({
 app.start(3019);
 ```
 
-说明
+Note:
 
 - app.mount_routes
 - app.mount_plugins
 
-更多，见 https://github.com/i5ting/base2-examples
+more detail see https://github.com/i5ting/base2-examples
 
 ## Default Options
 
@@ -86,6 +94,7 @@ app.start(3019);
 
 ## Middlewares
 
+already exist middlewares
 
 - morgan log
 - serve-favicon
