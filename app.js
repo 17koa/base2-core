@@ -43,8 +43,8 @@ module.exports = function (config) {
   
   var cfg = {
     debug: false,
-    log_enable:true,
-    log_level:"dev",
+    log_enable: false,
+    log_level: "dev",
     // "views": "views",
     // "routes": "routes",
     // "public": "public",
