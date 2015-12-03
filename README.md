@@ -11,7 +11,7 @@ Artwork by [i5ting](http://www.github.com/i5ting/).
 ## Features
 
 - 基于expressjs，可使用connect中间件，路由
-- 抽象app生命周期和中间件（不是connect的中间件）
+- 抽象app生命周期和中间件（不是connect的中间件），可随意扩展
 - 参数配置，可高度定制
 - 自动挂载路由
 
