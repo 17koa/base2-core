@@ -2,7 +2,7 @@ var app = require('../')({
   debug: true,
   root:__dirname,
   "views": "views",
-  "routes": "routes",
+  "routes": "routes2",
   "public": "public",
   before_settings: function(app) {
     // console.log(app)
@@ -15,5 +15,3 @@ var app = require('../')({
 // app.mount_plugins(__dirname + '/plugins');
 
 app.start(3019);
-
-module.exports = app;

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./examples/app.js",
-    "test": "./node_modules/.bin/supervisor ./examples/app.js",
+    "test": "./node_modules/.bin/mocha -u bdd",
     "p": "npm publish .",
-    "preinstall":"npm install --save base2"
+    "preinstall": "npm install --save base2"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,9 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0",
     "supervisor": "^0.9.1"
   }
 }
