@@ -2,13 +2,15 @@ var bodyparser    = require('body-parser');
 var path          = require('path');
 
 module.exports = function (app) {
+  var cfg = app.cfg;
+  
   return {
     /**
      * basic settings
      */ 
     settings: function () {
       this._before('settings');
-      var cfg = app.cfg;
+      
       app.set('port', 8001);
   
       // app.set('www', app.get('root') + "/" + app.get('public')); 
@@ -20,11 +22,6 @@ module.exports = function (app) {
         app.set_key_with_setting_key('views', 'views');
       }
   
-      if (cfg.routes) {
-        app.set('routes', cfg.routes);
-        app.mount_routes(app.cfg.root + "/" + cfg.routes, app.debug);
-      }
-      
       this._after('settings');
     },
 
@@ -33,7 +30,6 @@ module.exports = function (app) {
      */ 
     global_middlewares: function () {
       this._before('global_middlewares');
-      app.use(bodyparser.urlencoded({ extended: false }));
   
       app.mount_plugins(path.join(__dirname, 'lib'));
       this._after('global_middlewares');
@@ -45,6 +41,11 @@ module.exports = function (app) {
     routes: function () {
       this._before('routes');
       // ...
+      if (cfg.routes) {
+        app.set('routes', cfg.routes);
+        app.mount_routes(app.cfg.root + "/" + cfg.routes, app.debug);
+      }
+      
       this._after('routes');
     },
     _call:function(type,method){

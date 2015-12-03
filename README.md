@@ -84,7 +84,15 @@ app.start(3019);
   - config.after_routes
 - config.post
 
-## middleware
+## Middlewares
+
+
+- morgan log
+- serve-favicon
+- cookie-parser
+- body-parser
+
+write a middleware by yourself:
 
 ```
 module.exports = function (app) {
