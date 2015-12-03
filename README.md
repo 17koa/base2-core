@@ -43,6 +43,33 @@ app.start(3019);
 
 更多，见 https://github.com/i5ting/base2-examples
 
+## Default Options
+
+```
+  var cfg = {
+    debug: false,
+    favicon: 'favicon.ico',
+    favicon_enable: false,
+    post_enable: true,
+    cookie_enable: true,
+    log_enable: true,
+    log_level: "dev",
+    // "views": "views",
+    // "routes": "routes",
+    // "public": "public",
+    pre: function (app) {
+      if (app.debug) {
+        console.log('pre hook');
+      }
+    },
+    post: function (app) {
+      if (app.debug) {
+        console.log('post hook');
+      }
+    }
+  }
+```
+
 ## Extract
 
 - config.pre
