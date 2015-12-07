@@ -21,6 +21,21 @@
 - 参数配置，可高度定制
 - 自动挂载路由
 
+more
+
+- framework
+  - express
+  - koa
+- env
+  - production
+  - development
+  - test
+- type
+  - normal
+  - api
+  - all
+  - service
+
 ## Install
 
     [sudo]npm install --save base2
