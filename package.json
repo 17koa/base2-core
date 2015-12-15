@@ -1,13 +1,12 @@
 {
   "name": "base2",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "base2",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./examples/app.js",
     "test": "./node_modules/.bin/mocha -u bdd",
-    "p": "npm publish .",
-    "preinstall": "npm install --save base2"
+    "p": "npm publish ."
   },
   "repository": {
     "type": "git",
