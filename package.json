@@ -1,6 +1,6 @@
 {
   "name": "base2",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "base2",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
-    "mount-routes": "^1.0.5",
+    "mount-routes": "^1.0.6",
     "mount_plugin": "^1.0.0",
     "require-directory": "^2.1.1",
     "serve-favicon": "~2.3.0"
