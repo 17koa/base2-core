@@ -1,11 +1,12 @@
 // var express       = require('express');
 var path          = require('path');
-var mount_routes  = require('mount-routes');
+
 var mount_plugins = require('mount_plugin');
 
 module.exports = function (config) {
   var app           = require('./type')(config);
   var lifecycle     = require('./lifecycle');
+  var mount_routes  = require('./routes')(config);
 
   app.set_absolute_path = function (key, path) {
     this.set(key, app.cfg.root + "/" + path); 

@@ -1,6 +1,6 @@
 {
   "name": "base2",
-  "version": "1.0.16",
+  "version": "2.0.0",
   "description": "base2",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/i5ting/base2#readme",
   "dependencies": {
     "base2-express-middlewares": "^1.0.1",
+    "base2-koa-middlewares": "^1.0.1",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
@@ -27,7 +28,9 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "koa": "^1.1.2",
+    "koa-router": "^5.3.0",
     "morgan": "~1.6.1",
+    "mount-koa-routes": "^1.0.7",
     "mount-routes": "^1.0.6",
     "mount_plugin": "^1.0.0",
     "require-directory": "^2.1.1",

@@ -3,11 +3,20 @@ var koa           = require('koa');
 
 module.exports = function (config) {
   console.log(config)
-  if(config.type == 'express'){
-    return express();
-  }else if(config.type == 'koa'){
-    return koa();
+  var app = express();
+  
+  if(config.type == 'koa'){
+    app =  koa();
+    app.settings=[];
+    
+    app.set = function(k, v){
+      app.settings[k] = v;
+    }
+    
+    app.get = function(k){
+      return app.settings[k];
+    }
   }
   
-  return express();
+  return app;
 }
