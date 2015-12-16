@@ -26,6 +26,7 @@
     "deep-extend": "^0.4.0",
     "express": "~4.13.1",
     "jade": "~1.11.0",
+    "koa": "^1.1.2",
     "morgan": "~1.6.1",
     "mount-routes": "^1.0.6",
     "mount_plugin": "^1.0.0",

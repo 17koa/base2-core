@@ -1,48 +1,73 @@
-var express       = require('express');
+// var express       = require('express');
 var path          = require('path');
 var mount_routes  = require('mount-routes');
 var mount_plugins = require('mount_plugin');
-var app           = express();
-
-var lifecycle     = require('./lifecycle');
-
-app.set_absolute_path = function (key, path) {
-  this.set(key, app.cfg.root + "/" + path); 
-};
-
-app.set_key_with_setting_key = function (key, setting_key) {
-  var __path = path.join(app.cfg.root, app.cfg[setting_key]);
-  
-  if (app.debug) {
-    console.log(key + " = " + __path); 
-  }
-  
-  this.set(key, __path); 
-};
-
-
-/**
- * mount routes
- */ 
-app.mount_routes = function (path) {
-  mount_routes(this, path, this.debug);
-}
-
-/**
- * mount plugins
- */ 
-app.mount_plugins = function (plugin_dir) {
-  mount_plugins(this, plugin_dir, this.debug);
-}
 
 module.exports = function (config) {
+  var app           = require('./type')(config);
+  var lifecycle     = require('./lifecycle');
+
+  app.set_absolute_path = function (key, path) {
+    this.set(key, app.cfg.root + "/" + path); 
+  };
+
+  app.set_key_with_setting_key = function (key, setting_key) {
+    var __path = path.join(app.cfg.root, app.cfg[setting_key]);
+  
+    if (app.debug) {
+      console.log(key + " = " + __path); 
+    }
+  
+    this.set(key, __path); 
+  };
+
+
+  /**
+   * mount routes
+   */ 
+  app.mount_routes = function (path) {
+    mount_routes(this, path, this.debug);
+  }
+
+  /**
+   * mount plugins
+   */ 
+  app.mount_plugins = function (plugin_dir) {
+    mount_plugins(this, plugin_dir, this.debug);
+  }
+  
+  function __set(app, k, v, default_v){
+    app.set('port', v ? v : default_v);
+  }
+
+  function __call (config, key, app) {
+    if (config[key]) {
+      config[key](app);
+    }
+  }
+
+  function hook_post (app) {
+    __call(app.cfg, 'post', app);
+  }
+
+  function hook_pre (app) {
+    __call(app.cfg, 'pre', app);
+  }
+
+  function _get_default_root_path () {
+    var arr = __dirname.split('/');
+    arr.pop();
+    arr.pop();
+    return arr.join('/');
+  }
+  
   // root = base2-examples/
   // base2-examples/node_modules/base2
   app.set('root', _get_default_root_path());
   
   var deepExtend = require('deep-extend');
   deepExtend(app, {
-    express: express
+    // express: express
   });
   
   var cfg = {
@@ -96,28 +121,3 @@ module.exports = function (config) {
   
   return app;
 };
-
-function __set(app, k, v, default_v){
-  app.set('port', v ? v : default_v);
-}
-
-function __call (config, key, app) {
-  if (config[key]) {
-    config[key](app);
-  }
-}
-
-function hook_post (app) {
-  __call(app.cfg, 'post', app);
-}
-
-function hook_pre (app) {
-  __call(app.cfg, 'pre', app);
-}
-
-function _get_default_root_path () {
-  var arr = __dirname.split('/');
-  arr.pop();
-  arr.pop();
-  return arr.join('/');
-}

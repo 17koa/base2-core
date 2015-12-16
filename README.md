@@ -45,6 +45,7 @@ more
 ```
 var app = require('base2')({
   // debug: true,
+  type:"koa",
   root:__dirname,
   "views": "views",
   "routes": "routes2",
