@@ -75,6 +75,7 @@ more detail see https://github.com/i5ting/base2-examples
     cookie_enable: true,
     log_enable: true,
     log_level: "dev",
+    post_limit_size : '100kb',
     // "views": "views",
     // "routes": "routes",
     // "public": "public",
