@@ -77,6 +77,7 @@ module.exports = function (config) {
     favicon: 'favicon.ico',
     favicon_enable: false,
     post_enable: true,
+    post_limit_size : '100kb',
     cookie_enable: true,
     log_enable: true,
     log_level: "dev",
