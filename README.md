@@ -16,7 +16,7 @@
 
 ## Features
 
-- 基于expressjs，可使用connect中间件，路由
+- 基于express && koa 1.x && koa 2.x，可使用中间件，路由
 - 抽象app生命周期和中间件（不是connect的中间件），可随意扩展
 - 参数配置，可高度定制
 - 自动挂载路由
@@ -26,6 +26,7 @@ more
 - framework
   - express
   - koa
+  - koa2
 - env
   - production
   - development
