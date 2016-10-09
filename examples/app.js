@@ -1,9 +1,9 @@
 var app = require('../')({
   debug: true,
-  type:"koa",
+  type:"koa2",
   root:__dirname,
   "views": "views",
-  "routes": "koaroutes",
+  "routes": "koa2",
   "public": "public",
   // favicon: 'images/favicon.ico',
 //   favicon_enable: true,

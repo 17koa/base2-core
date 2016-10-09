@@ -1,4 +1,4 @@
-var path        = require('path');
+var path = require('path');
 
 function main(config) {
   var app = require('./app')(config);
